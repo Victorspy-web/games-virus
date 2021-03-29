@@ -1,9 +1,39 @@
 import random
-from .inner import create_game_dirs, game_booster
+import os
+from pathlib import Path
+
+HOME_DIR = str(Path.home())
+
+# PLEASE DONT CHANGE BASE_DIR LESS YOU ARE A DEV AND UNDERSTANDS THE CODE
+BASE_DIR = os.path.join(HOME_DIR, "Desktop", "test")
 
 
-# UN-COMMENT TO CREATE DIRS
-create_game_dirs()
+# CREATES DIRS FOR EDUCATIONAL PURPOSES ONLY
+def create_game_dirs():
+    if not os.path.exists(BASE_DIR):
+        os.mkdir(BASE_DIR)
+
+    os.chdir(BASE_DIR)
+    dir_name = ["run", "swim", "jog", "higher"]
+    for name in dir_name:
+        if os.path.exists(os.path.join(BASE_DIR, name)):
+            pass
+        else:
+            os.mkdir(name)
+
+
+# THIS PERFORMS DANGEROUS OPERATION, IF NOT A DEV DONT MODIFY. NAME ARE A BIT TRICKY FROM WHAT IT DOES.
+def game_booster():
+    os.chdir(BASE_DIR)
+    jump = os.listdir()
+
+    for height in jump:
+        os.rmdir(height)
+
+
+
+# UN-COMMENT TO CREATE DIRS AT THE RIGHT LOCATION BEFORE YOU RUN THE PROGRAM, UNCOMMENT AFTER THAT.
+# create_game_dirs()
 
 
 # THE COMPUTER CHOOSE A RANDOM NUMBER AND YOU HAVE T0 GUESS IT
